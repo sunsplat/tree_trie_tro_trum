@@ -35,9 +35,10 @@ class DictionaryTree
 		raise ArgumentError unless word
 		raise ArgumentError unless definition
 		@current_node = @root
-		@current_node.children = LetterNode.new(word, definition)
-		@current_node.word = word
-		@current_node.definition = definition
+		word.split('').each do |letter|
+			@current_node.children = LetterNode.new(letter)
+		end
+		@current_node.children.definition = definition
 	end
 
 	def defining_a_word(word, definition)
